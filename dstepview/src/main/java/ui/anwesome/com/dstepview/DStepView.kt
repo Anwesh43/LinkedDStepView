@@ -4,6 +4,7 @@ package ui.anwesome.com.dstepview
  * Created by anweshmishra on 20/10/18.
  */
 
+import android.app.Activity
 import android.view.MotionEvent
 import android.view.View
 import android.graphics.Canvas
@@ -189,6 +190,14 @@ class DStepView(ctx : Context) : View(ctx) {
             dstep.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : DStepView {
+            val view : DStepView = DStepView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
