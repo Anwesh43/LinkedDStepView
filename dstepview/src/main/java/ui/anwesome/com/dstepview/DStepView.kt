@@ -14,7 +14,7 @@ import android.content.Context
 
 val nodes : Int = 5
 
-fun Canvas.drawDStepView(i : Int, scale : Float, paint : Paint) {
+fun Canvas.drawDStep(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     val gap : Float = w / (nodes + 1)
@@ -35,4 +35,22 @@ fun Canvas.drawDStepView(i : Int, scale : Float, paint : Paint) {
         restore()
     }
     restore()
+}
+
+class DStepView(ctx : Context) : View(ctx) {
+
+    private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
