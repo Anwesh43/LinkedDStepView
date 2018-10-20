@@ -21,7 +21,6 @@ fun Canvas.drawDStep(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     val gap : Float = w / (nodes + 1)
     val r : Float = gap / 3
-    paint.style = Paint.Style.STROKE
     paint.strokeWidth = Math.min(w, h) / 60
     paint.strokeCap = Paint.Cap.ROUND
     paint.color = Color.parseColor("#673AB7")
@@ -32,8 +31,14 @@ fun Canvas.drawDStep(i : Int, scale : Float, paint : Paint) {
         val sf : Float = 1f - 2 * j
         save()
         scale(1f, sf)
+        paint.style = Paint.Style.STROKE
         drawLine(0f, r - r * sc, 0f, r, paint)
         drawArc(RectF(-r, -r, r, r), 90f - 90f * sc, 90f * sc, false, paint)
+        paint.style = Paint.Style.FILL
+        save()
+        translate(0f, 0.3f * h)
+        drawArc(RectF(-r/2, -r/2, r/2, r/2), 0f, 360f * sc, true, paint)
+        restore()
         restore()
     }
     restore()
@@ -196,7 +201,7 @@ class DStepView(ctx : Context) : View(ctx) {
 
     companion object {
         fun create(activity : Activity) : DStepView {
-            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE 
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             val view : DStepView = DStepView(activity)
             activity.setContentView(view)
             return view
