@@ -12,6 +12,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.Color
 import android.content.Context
+import android.content.pm.ActivityInfo
 
 val nodes : Int = 5
 
@@ -195,6 +196,7 @@ class DStepView(ctx : Context) : View(ctx) {
 
     companion object {
         fun create(activity : Activity) : DStepView {
+            activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE 
             val view : DStepView = DStepView(activity)
             activity.setContentView(view)
             return view
